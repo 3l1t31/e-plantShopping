@@ -30,6 +30,23 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total cost based on quantity for an item
   const calculateTotalCost = (item) => {
+        let totalCost = 0;
+        if (item === "Spider Plant") {
+          CartItem.forEach((item) => {
+            totalCost += item.cost * item.quantity;
+          });
+        } else if (section === "av") {
+            avItems.forEach((item) => {
+                totalCost += item.cost * item.quantity;
+          });
+          } else if (section === "meals") {
+                mealsItems.forEach((item) => {
+                    if (item.selected) {
+                        totalCost += item.cost * numberOfPeople;
+                    }
+          });
+        }
+        return totalCost;  
   };
 
   return (
